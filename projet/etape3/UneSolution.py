@@ -9,8 +9,7 @@ class UneSolution(Solution) :
     """  
     Classe pour definir une solution pour le cas 3 de la tache 2 (hérite de Solution)
     """ 
-    
-    
+
     #    attributs
     #    A COMPLETER
     #    //////////////////////////////////////////////
@@ -20,7 +19,7 @@ class UneSolution(Solution) :
     #    constructeurs
     #    A ECRIRE/COMPLETER
     #    //////////////////////////////////////////////
-    def __init__(self, tg : GrapheDeLieux, chemin: list=[0]) :
+    def __init__(self, tg : GrapheDeLieux, chemin: list=[]) :
         """ constructeur d'un etat a partir du graphe representant le monde
         
         :param tg: graphe representant le monde
@@ -45,11 +44,11 @@ class UneSolution(Solution) :
 
         voisins = []
         nouveau_chemin = self.chemin[1:-1]
-        print(f"self.chemin = {self.chemin}")
-        print(f"nouveau_chemin = {nouveau_chemin}")
+        #print(f"self.chemin = {self.chemin}")
+        #print(f"nouveau_chemin = {nouveau_chemin}")
 
         for i in range(1, len(nouveau_chemin)):
-            print("test")
+            #print("test")
             tmp = nouveau_chemin[i-1]
             nouveau_chemin[i-1] = nouveau_chemin[i]
             nouveau_chemin[i] = tmp
