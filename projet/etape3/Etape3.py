@@ -7,7 +7,8 @@ from projet.etape3.UneSolution import UneSolution
 
 # rajouter ensuite le import permettant d'utiliser les solvers choisis
 # from solvers.... import ...
-
+from projet.solvers.SolverHC import SolverHC as HC
+from projet.solvers.SolverTabou import SolverTabou as Tabou
 
 class Etape3 :
     """  classe pour realiser les tests de l'etape 3 du projet (suite tache 2) """ 
@@ -18,6 +19,8 @@ class Etape3 :
     """  methode de TESTS pour Etape3
     """ 
     if __name__ == '__main__':
+
+        nb_tentatives = 100
                        
         #    tests sur Etape 3
         #    ///////////////////
@@ -25,22 +28,21 @@ class Etape3 :
         tg : GrapheDeLieux = GrapheDeLieux.loadGraph("Data/town10.txt",True) 
         tsp : UneSolution = UneSolution(tg) 
         print("======== Solver 1 pour 10 villes de 0 a 9 : \n")
-        #    appel du solver 1
-        #    ...                                  
+        HC.hilClimbing(tsp, nb_tentatives)
+
         print("======== Solver 2 pour 10 villes de 0 a 9 : \n")
-        #    appel du solver 2
-        #    ...                                  
+        Tabou.tabou(tsp, nb_tentatives)                              
                                    
         #    ///////////////////
         #    cas 2 : 26 villes de 0 à 25
         tg = GrapheDeLieux.loadGraph("Data/town30.txt",True) 
         tsp = UneSolution(tg) 
         print("======== Solver 1 pour 26 villes de 0 a 25 : \n")
-        #    appel du solver 1
-        #    ...                                  
+        HC.hilClimbing(tsp, nb_tentatives)
+
         print("======== Solver 2 pour 26 villes de 0 a 25 : \n")
-        #    appel du solver 2
-        #    ...                                  
+        Tabou.tabou(tsp, nb_tentatives)                              
+                                   
                                    
                                    
         #    ///////////////////
@@ -48,11 +50,11 @@ class Etape3 :
         tg = GrapheDeLieux.loadGraph("Data/town150.txt",True) 
         tsp = UneSolution(tg) 
         print("======== Solver 1 pour 150 villes : \n")
-        #    appel du solver 1
-        #    ...                                  
+        HC.hilClimbing(tsp, nb_tentatives)
+                                 
         print("======== Solver 2 pour 150 villes : \n")
-        #    appel du solver 2
-        #    ...                                  
+        Tabou.tabou(tsp, nb_tentatives)                              
+                                   
                                    
                                    
         #    ///////////////////
@@ -60,10 +62,10 @@ class Etape3 :
         tg = GrapheDeLieux.loadGraph("Data/town1000.txt",True) 
         tsp = UneSolution(tg) 
         print("======== Solver 1 pour 1000 villes : \n")
-        #    appel du solver 1
-        #    ...                                  
+        HC.hilClimbing(tsp, nb_tentatives)
+                                 
         print("======== Solver 2 pour 1000 villes : \n")
-        #    appel du solver 2
-        #    ...                                  
+        Tabou.tabou(tsp, nb_tentatives)                              
+                                   
     
 

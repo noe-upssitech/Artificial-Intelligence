@@ -29,7 +29,10 @@ class UneSolution(Solution) :
         """ 
         self.tg = tg
         self.chemin = chemin
-    
+        #self.rand = rand.Random()
+
+        if len(self.chemin) == 0:
+            self.chemin = self.nelleSolution().chemin
     
     
     #    methodes de la classe abstraite Solution
@@ -39,10 +42,14 @@ class UneSolution(Solution) :
         
         :return liste des voisins de la solution courante
         """ 
+
         voisins = []
         nouveau_chemin = self.chemin[1:-1]
+        print(f"self.chemin = {self.chemin}")
+        print(f"nouveau_chemin = {nouveau_chemin}")
 
         for i in range(1, len(nouveau_chemin)):
+            print("test")
             tmp = nouveau_chemin[i-1]
             nouveau_chemin[i-1] = nouveau_chemin[i]
             nouveau_chemin[i] = tmp
@@ -58,8 +65,12 @@ class UneSolution(Solution) :
         :return voisin de la solution courante
         """ 
         #    A ECRIRE et MAJ la valeur retournee
-        voisins = self.lesVoisins()
-        return rand.choice(voisins[0,len(voisins)])
+
+        voisins = self.lesVoisins()    
+        #print(f"voisins = {voisins}")
+    
+
+        return [voisins[rand.randint(0, len(voisins)-1)]]
     
 
     def eval(self) : 
