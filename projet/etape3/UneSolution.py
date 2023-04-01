@@ -40,8 +40,15 @@ class UneSolution(Solution) :
         :return liste des voisins de la solution courante
         """ 
         voisins = []
-        
-        return 0
+        nouveau_chemin = self.chemin[1:-1]
+
+        for i in range(1, len(nouveau_chemin)):
+            tmp = nouveau_chemin[i-1]
+            nouveau_chemin[i-1] = nouveau_chemin[i]
+            nouveau_chemin[i] = tmp
+            voisins.append(UneSolution(self.tg, [0] + nouveau_chemin + [0]))
+
+        return voisins
     
     
 
@@ -61,8 +68,11 @@ class UneSolution(Solution) :
         :return valeur de la solution courante
         """ 
         #    A ECRIRE et MAJ la valeur retournee
+        result = []
+        for i in range(1, len(self.chemin)):
+            result.append(GrapheDeLieux.dist(self.chemin[i-1], self.chemin[i], self.tg))
         
-        return 0
+        return sum(result)
     
     
     def nelleSolution(self) : 
@@ -73,10 +83,9 @@ class UneSolution(Solution) :
         """ 
         #    A ECRIRE et MAJ la valeur retournee
         chemin = list(range(1, self.tg.getNbSommets()))
-        self.rd.shuffle(chemin)
-        chemin = [0] + chemin + [0]
+        rand.shuffle(chemin)
 
-        return UneSolution(self.tg, chemin)
+        return UneSolution(self.tg, [0] + chemin + [0])
     
     
     def displayPath(self, pere) :
@@ -95,7 +104,7 @@ class UneSolution(Solution) :
         :return code de hachage
         """ 
         # A ECRIRE et MODIFIER le return en consequence
-        return ''.join([str(sommet) for sommet in self.visite]).__hash__()
+        return ''.join([str(sommet) for sommet in self.chemin]).__hash__()
     
     
     def __eq__(self, o) :
@@ -106,7 +115,7 @@ class UneSolution(Solution) :
         :return true si l'etat courant et o sont egaux, false sinon
         """ 
         # A ECRIRE et MODIFIER le return en consequence
-        return self.etat_courant == o
+        return self.chemin == o
     
     # methode pour affichage futur (heritee d'Object)
     # //////////////////////////////////////////////
@@ -118,7 +127,7 @@ class UneSolution(Solution) :
         chaine de caracteres
         """ 
         # A ECRIRE et MODIFIER le return en consequence
-        return str(self.etat_courant)
+        return f"chemin = {self.chemin}, cout = {self.eval()} \n"
     
 
 
